@@ -19,13 +19,16 @@ struct ContentView: View {
         Text("Hello, world!")
             .onTapGesture {
                 selectedUser = User()
+                isShowingUser = true
             }
-            .sheet(isPresented: $isShowingUser) {
-                Text(selectedUser!.id)
+        
+            // does not force unwrap
+            .alert("Welcome", isPresented: $isShowingUser, presenting: selectedUser) { user in
+                Button(user.id) { }
             }
-            .sheet(item: $selectedUser) { user in
-                Text(user.id)
-            }
+        
+            // shows button automatically
+            .alert("Welcome", isPresented: $isShowingUser) { }
     }
 }
 
