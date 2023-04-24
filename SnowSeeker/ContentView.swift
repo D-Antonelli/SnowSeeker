@@ -56,7 +56,7 @@ struct ContentView: View {
             WelcomeView()
         }
         // this is optional
-        .phoneOnlyStackNavigationView()
+//        .phoneOnlyStackNavigationView()
         
     }
     
