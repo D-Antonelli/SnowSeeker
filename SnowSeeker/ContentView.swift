@@ -25,6 +25,8 @@ struct ContentView: View {
     @State private var searchText = ""
     @State private var showFilterSheet = false
     
+    @State private var sort: Int = 0
+    
     var body: some View {
         NavigationView {
             List(filteredResorts) { resort in
@@ -66,11 +68,17 @@ struct ContentView: View {
             .navigationTitle("Resorts")
             .searchable(text: $searchText, prompt: "Search for a resort")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showFilterSheet.toggle()
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        Picker(selection: $sort, label: Text("Sorting options")) {
+                            Text("Default").tag(0)
+                            Text("Alphabetical")
+                                .tag(1)
+                            Text("Country").tag(2)
+                            
+                        }
                     } label: {
-                        Image(systemName: "line.horizontal.3.decrease.circle")
+                        Label("Sort", systemImage: "line.horizontal.3.decrease.circle")
                     }
                 }
             }
