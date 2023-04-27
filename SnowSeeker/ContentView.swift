@@ -23,6 +23,7 @@ struct ContentView: View {
     
     @StateObject var favorites = Favorites()
     @State private var searchText = ""
+    @State private var showFilterSheet = false
     
     var body: some View {
         NavigationView {
@@ -64,6 +65,15 @@ struct ContentView: View {
             }
             .navigationTitle("Resorts")
             .searchable(text: $searchText, prompt: "Search for a resort")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showFilterSheet.toggle()
+                    } label: {
+                        Image(systemName: "line.horizontal.3.decrease.circle")
+                    }
+                }
+            }
             
             // secondary view for large screens
             WelcomeView()
