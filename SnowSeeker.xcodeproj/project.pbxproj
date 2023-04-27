@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A3141BA29FA81BB00E6BB53 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3141B929FA81BB00E6BB53 /* FilterView.swift */; };
 		8A3BF83F29ED44170000B49E /* SnowSeekerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BF83E29ED44170000B49E /* SnowSeekerApp.swift */; };
 		8A3BF84129ED44170000B49E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BF84029ED44170000B49E /* ContentView.swift */; };
 		8A3BF84329ED44190000B49E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3BF84229ED44190000B49E /* Assets.xcassets */; };
@@ -24,7 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8A3141B929FA81BB00E6BB53 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8A3BF83B29ED44170000B49E /* SnowSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnowSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A3BF83E29ED44170000B49E /* SnowSeekerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowSeekerApp.swift; sourceTree = "<group>"; };
 		8A3BF84029ED44170000B49E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				8AFCB58529F692D700CE2F2A /* Favorites.swift */,
 				8A3BF84229ED44190000B49E /* Assets.xcassets */,
 				8A3BF84429ED44190000B49E /* Preview Content */,
-				8A3141B929FA81BB00E6BB53 /* FilterView.swift */,
 			);
 			path = SnowSeeker;
 			sourceTree = "<group>";
@@ -168,7 +165,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3141BA29FA81BB00E6BB53 /* FilterView.swift in Sources */,
 				8A3BF85329F1444A0000B49E /* WelcomeView.swift in Sources */,
 				8A3BF85729F14C110000B49E /* SkiDetailsView.swift in Sources */,
 				8A3BF85A29F14D7E0000B49E /* ResortDetailsView.swift in Sources */,

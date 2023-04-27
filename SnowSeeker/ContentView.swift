@@ -17,6 +17,12 @@ extension View {
     }
 }
 
+enum SortOption {
+    case defaultSort
+    case alphabeticalSort
+    case countrySort
+}
+
 struct ContentView: View {
     
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
@@ -25,7 +31,7 @@ struct ContentView: View {
     @State private var searchText = ""
     @State private var showFilterSheet = false
     
-    @State private var sort: Int = 0
+    @State private var sort: SortOption = .defaultSort
     
     var body: some View {
         NavigationView {
@@ -34,33 +40,33 @@ struct ContentView: View {
                     ResortView(resort: resort)
                 } label: {
                     HStack {
-           
-                    Image(resort.country)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 40, height: 25)
-                        .clipShape(
-                            RoundedRectangle(cornerRadius: 5)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(.black, lineWidth: 1)
-                        )
-
-                    VStack(alignment: .leading) {
-                        Text(resort.name)
-                            .font(.headline)
-                        Text("\(resort.runs) runs")
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    if favorites.contains(resort) {
-                        Spacer()
-                        Image(systemName: "heart.fill")
-                            .accessibilityLabel("This is a favorite resort")
-                            .foregroundColor(.red)
                         
-                    }
+                        Image(resort.country)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 40, height: 25)
+                            .clipShape(
+                                RoundedRectangle(cornerRadius: 5)
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(.black, lineWidth: 1)
+                            )
+                        
+                        VStack(alignment: .leading) {
+                            Text(resort.name)
+                                .font(.headline)
+                            Text("\(resort.runs) runs")
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        if favorites.contains(resort) {
+                            Spacer()
+                            Image(systemName: "heart.fill")
+                                .accessibilityLabel("This is a favorite resort")
+                                .foregroundColor(.red)
+                            
+                        }
                         
                     }
                 }
@@ -71,10 +77,10 @@ struct ContentView: View {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
                         Picker(selection: $sort, label: Text("Sorting options")) {
-                            Text("Default").tag(0)
+                            Text("Default").tag(SortOption.defaultSort)
                             Text("Alphabetical")
-                                .tag(1)
-                            Text("Country").tag(2)
+                                .tag(SortOption.alphabeticalSort)
+                            Text("Country").tag(SortOption.countrySort)
                             
                         }
                     } label: {
@@ -87,19 +93,34 @@ struct ContentView: View {
             WelcomeView()
         }
         // this is optional
-//        .phoneOnlyStackNavigationView()
+        //        .phoneOnlyStackNavigationView()
         .environmentObject(favorites)
         
     }
     
     var filteredResorts: [Resort] {
+        var filtered: [Resort] = []
+        
         if searchText.isEmpty {
-            return resorts
+            filtered = resorts
         } else {
-            return resorts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            filtered = resorts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
+        
+        switch sort {
+        case .defaultSort:
+            break
+            
+        case .alphabeticalSort:
+            filtered.sort { $0.name < $1.name }
+            
+        case .countrySort:
+            filtered.sort { $0.country < $1.country }
+        }
+        
+        return filtered
+        
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
